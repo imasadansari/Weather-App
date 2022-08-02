@@ -1,0 +1,54 @@
+<div class="container text-center my-1">
+  <div class="row">
+    <div class="col mx-5">
+      <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id="weathercon">
+          <i class="fas fa-sun" style="color: #eccc68"></i>
+        </div>
+
+        <div class="info">
+          <h2 class="location">
+            <i class="fas fa-street-view" style="color: #fff"></i> {{ weather.name }}, {{ weather.sys.country }}
+          </h2>
+          <p id="date">
+            <app-datetrial></app-datetrial>
+          </p>
+          <h1 class="temp"> {{ weather.main.temp }} &deg;C</h1>
+          <h3 class="tempmin_max">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Humidity {{ weather.main.humidity }}% | Pressure
+            {{weather.main.pressure}} hpa
+          </h3>
+          <h3 class="tempmin_max">
+            Min {{ weather.main.temp_min}} &deg;C | Max {{weather.main.temp_max}}&deg;C
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="container">
+        <google-map height="660px" width="600px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+          <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+            [options]="markerOptions">
+          </map-marker>
+        </google-map>
+        <!-- <div>Marker: {{markerPositions[0]?.lat}}, {{markerPositions[0]?.lng}}</div>
+        <div>Center: {{center.lat}}, {{center.lng}}</div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Input Button to search  by city name
+<div class="container my-5 mx-5">
+  <input type="text" class="form-control" #userInput placeholder="Enter City Name">
+  <div class="input-group-append">
+    <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Search</button>
+  </div>
+</div> -->
+
